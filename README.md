@@ -1,5 +1,7 @@
 # wechat-md
 
+**简体中文** | [English](README.en.md) | [日本語](README.ja.md)
+
 **让公众号文章进入 Codex 和你的本地知识库。**
 
 把公开的微信公众号文章转成 Markdown，下载图片，保留来源，并记录归档是否完整。既可以在命令行独立运行，也可以作为 Codex skill 使用。
@@ -45,7 +47,15 @@ python3 wx2md.py "https://mp.weixin.qq.com/s/ARTICLE_TOKEN" -o ./archive
 
 ### 在 Codex 中使用
 
-将项目目录作为一个完整 skill 安装，保持 `SKILL.md` 与 `wx2md.py` 在同一目录。macOS/Linux 用户可在项目根目录建立软链接：
+根据 [OpenAI 官方文档](https://developers.openai.com/zh-Hans/docs/build-skills)，Codex 内置的 `$skill-installer` 可以从其他仓库下载 skill。将下面这段指令直接发给 Codex：
+
+```text
+$skill-installer 请从 https://github.com/passerbied/wechat-md 安装 wechat-md skill。安装前检查是否已有同名 skill；如果存在，请不要覆盖，先告诉我当前状态。安装后确认 SKILL.md 和 wx2md.py 位于同一个 skill 目录，再检查 python3 --version 是否为 Python 3.9 或更高版本。如果 Python 缺失或版本过低，请不要直接安装；先说明适用于当前系统的安装方案，征得我的明确同意后再安装。Python 可用后，运行 python3 wx2md.py --version 验证 skill。安装过程中不要抓取任何微信文章。
+```
+
+Codex 会根据当前环境选择用户级 skill 目录。安装后若未显示新 skill，请重启 Codex。
+
+也可以手动安装：将项目目录作为一个完整 skill，保持 `SKILL.md` 与 `wx2md.py` 在同一目录。macOS/Linux 用户可在项目根目录建立软链接：
 
 ```bash
 mkdir -p "$HOME/.codex/skills"
